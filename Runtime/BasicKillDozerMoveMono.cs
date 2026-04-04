@@ -10,8 +10,8 @@ public class BasicKillDozerMoveMono : MonoBehaviour
     [Range(-1,1)]
     [SerializeField]
     private float m_moveForwardPercent = 0;
-    public float m_speedPerSecondForward = 5.0f; // Vitesse du déplacement
-    public float m_speedPerSecondBackward = 1.0f; // Vitesse du déplacement
+    public float m_speedPerSecondForward = 5.0f; 
+    public float m_speedPerSecondBackward = 1.0f; 
 
 
     [Range(-1,1)]
@@ -81,29 +81,20 @@ public class BasicKillDozerMoveMono : MonoBehaviour
 
     public void RotateKillDozerLeftToRight() {
 
-        transform.Rotate(Vector3.up * (m_rotationSpeed * Time.deltaTime * m_rotateLeftRightPercent));
+        transform.Rotate(Vector3.up * (m_rotationSpeed * Time.deltaTime * m_rotateLeftRightPercent), Space.Self);
     }
 
     public void MoveKillDozerForward() {
-        // Je bouge le camino vers l'avant.
+        
         float speed = 0f;
-
-        // Je choisis la vitesse en fonction de la direction
         if (m_moveForwardPercent > 0)
-        {
             speed = m_speedPerSecondForward;
-        }
         else if (m_moveForwardPercent < 0)
-        {
             speed = m_speedPerSecondBackward;
-        }
-
-        // Je bouge le camion
         transform.Translate(Vector3.forward
             * speed
             * Time.deltaTime
             * m_moveForwardPercent);
-
     }
 
 }
